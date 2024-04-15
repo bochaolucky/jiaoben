@@ -1,0 +1,44 @@
+/dts-v1/;
+
+/ {
+	model = "SoC2018";
+	compatible = "arm";
+	#address-cells = <1>;
+	#size-cells = <1>;
+
+	cpus {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		cpu@0 {
+			compatible = "arm,cortex-a9";
+			device_type = "cpu";
+			reg = <0x0>;
+		};
+	};
+
+    memory@1 {
+        device_type = "memory";
+        reg = <0x40000000 0x200000>; 
+    };
+
+	uart0: serial@A0000000 {
+		compatible = "ns16550a";
+		reg = <0xA0000000 0x100>;
+		interrupts = <0 61 4>; // Corrected line
+		ti,hwmods = "uart0";
+		clock-frequency = <400000000>;
+		status = "okay";
+	};
+
+	uart1: serial@A0000100 {
+		compatible = "ns16550a";
+		reg = <0xA0000100 0x100>;
+		interrupts = <0 62 4>;
+		ti,hwmods = "uart1";
+		clock-frequency = <400000000>;
+		status = "okay";
+	};
+
+};
+
